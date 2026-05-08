@@ -1,0 +1,343 @@
+/* 색상 팔레트
+   #E9ECEC, #C9D2D4, #8C9A9E, #44545B, #11171B
+*/
+
+:root {
+  --color-bg-light: #e9ecec;
+  --color-bg-mid: #c9d2d4;
+  --color-bg-deep: #44545b;
+  --color-bg-dark: #11171b;
+
+  --color-text-main: #e9ecec;
+  --color-text-muted: #8c9a9e;
+
+  --color-border-soft: #8c9a9e;
+  --color-border-strong: #c9d2d4;
+
+  --radius-base: 4px;
+  --transition-fast: all 160ms ease-out;
+
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  /* 실제 배포 시 Alumni Sans SC 웹폰트로 교체 */
+  --font-subtitle: "Alumni Sans SC", system-ui, sans-serif;
+
+  --letter-spacing-wide: 0.18em;
+  --letter-spacing-nav: 0.22em;
+
+  --max-width: 1080px;
+}
+
+/* 기본 리셋에 가까운 최소 스타일 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at top, #44545b 0, #11171b 55%, #000 100%);
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-root {
+  min-height: 100vh;
+}
+
+/* 공통 레이아웃 */
+
+.section {
+  padding: 80px 24px;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* NAVIGATION */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 56px;
+}
+
+.nav-logo {
+  font-size: 12px;
+  letter-spacing: var(--letter-spacing-nav);
+  text-transform: uppercase;
+  color: var(--color-text-main);
+}
+
+.nav-right {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-link {
+  font-size: 11px;
+  letter-spacing: var(--letter-spacing-nav);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--color-text-main);
+  border-bottom-color: var(--color-border-soft);
+}
+
+/* HERO SECTION */
+
+.section-hero {
+  padding-top: 48px;
+  padding-bottom: 96px;
+}
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+}
+
+.hero-subtitle {
+  margin: 0 0 24px 0;
+}
+
+.hero-body {
+  margin: 0;
+  max-width: 480px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.hero-media-frame {
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-border-soft);
+  padding: 12px;
+  background: linear-gradient(
+    145deg,
+    rgba(233, 236, 236, 0.04),
+    rgba(17, 23, 27, 0.9)
+  );
+}
+
+.media-inner {
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  background: #000;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+}
+
+/* SECTION HEADERS */
+
+.section-header {
+  margin-bottom: 40px;
+}
+
+.section-header-center {
+  text-align: center;
+}
+
+.section-title {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.section-subtitle {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+/* 작은 부제: Alumni Sans SC 느낌 */
+
+.subtitle-small {
+  font-family: var(--font-subtitle);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* BENEFIT GRID */
+
+.section-benefits {
+  background: radial-gradient(circle at top, #11171b 0, #000 80%);
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.card {
+  border-radius: var(--radius-base);
+  border: 1px solid rgba(140, 154, 158, 0.7);
+  padding: 20px 18px;
+  background: linear-gradient(
+    160deg,
+    rgba(68, 84, 91, 0.9),
+    rgba(17, 23, 27, 0.95)
+  );
+}
+
+.card-title {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+}
+
+.card-body {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+/* FORMULATION SECTION */
+
+.section-formulation {
+  background: linear-gradient(180deg, #11171b 0, #000 100%);
+}
+
+.formulation-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.formulation-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: var(--radius-base);
+  border: 1px solid rgba(140, 154, 158, 0.8);
+  background: rgba(17, 23, 27, 0.9);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-main);
+}
+
+/* CTA SECTION */
+
+.section-cta {
+  background: radial-gradient(circle at bottom, #000 0, #11171b 60%);
+}
+
+.cta-body {
+  max-width: 520px;
+  margin: 0 auto 32px auto;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* BUTTONS */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-border-soft);
+  font-size: 11px;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-primary {
+  background: #44545b;
+  color: var(--color-text-main);
+}
+
+.btn-primary:hover {
+  background: #44545b;
+  filter: brightness(1.08);
+  border-color: var(--color-border-strong);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 960px) {
+  .hero-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .benefit-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .formulation-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 64px 18px;
+  }
+
+  .benefit-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nav-right {
+    gap: 16px;
+  }
+
+  .hero-title {
+    font-size: 18px;
+  }
+}
