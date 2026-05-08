@@ -1,55 +1,33 @@
-/* 색상 팔레트
-   #E9ECEC, #C9D2D4, #8C9A9E, #44545B, #11171B
-*/
-
 :root {
-  --color-bg-light: #e9ecec;
-  --color-bg-mid: #c9d2d4;
-  --color-bg-deep: #44545b;
-  --color-bg-dark: #11171b;
+  --c1: #e9ecec;
+  --c2: #c9d2d4;
+  --c3: #8c9a9e;
+  --c4: #44545b;
+  --c5: #11171b;
 
-  --color-text-main: #e9ecec;
-  --color-text-muted: #8c9a9e;
+  --radius: 4px;
+  --transition: all 160ms ease-out;
 
-  --color-border-soft: #8c9a9e;
-  --color-border-strong: #c9d2d4;
+  --font-main: system-ui, sans-serif;
+  --font-sub: "Alumni Sans SC", sans-serif;
 
-  --radius-base: 4px;
-  --transition-fast: all 160ms ease-out;
-
-  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  /* 실제 배포 시 Alumni Sans SC 웹폰트로 교체 */
-  --font-subtitle: "Alumni Sans SC", system-ui, sans-serif;
-
-  --letter-spacing-wide: 0.18em;
-  --letter-spacing-nav: 0.22em;
+  --ls-wide: 0.18em;
+  --ls-nav: 0.22em;
 
   --max-width: 1080px;
 }
 
-/* 기본 리셋에 가까운 최소 스타일 */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
+/* 전체 배경: 우주·금속·노이즈 */
 body {
-  margin: 0;
-  padding: 0;
-  background: radial-gradient(circle at top, #44545b 0, #11171b 55%, #000 100%);
-  color: var(--color-text-main);
+  background: radial-gradient(circle at 50% 20%, #44545b 0%, #11171b 60%, #000 100%);
+  color: var(--c1);
   font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
+  background-image:
+    url("../assets/img/noise-overlay.png");
+  background-size: cover;
+  background-blend-mode: overlay;
 }
-
-.page-root {
-  min-height: 100vh;
-}
-
-/* 공통 레이아웃 */
 
 .section {
   padding: 80px 24px;
@@ -60,20 +38,17 @@ body {
   margin: 0 auto;
 }
 
-/* NAVIGATION */
-
+/* NAV */
 .nav {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-bottom: 56px;
 }
 
 .nav-logo {
   font-size: 12px;
-  letter-spacing: var(--letter-spacing-nav);
+  letter-spacing: var(--ls-nav);
   text-transform: uppercase;
-  color: var(--color-text-main);
 }
 
 .nav-right {
@@ -83,261 +58,190 @@ body {
 
 .nav-link {
   font-size: 11px;
-  letter-spacing: var(--letter-spacing-nav);
+  letter-spacing: var(--ls-nav);
   text-transform: uppercase;
+  color: var(--c3);
   text-decoration: none;
-  color: var(--color-text-muted);
-  padding-bottom: 2px;
   border-bottom: 1px solid transparent;
-  transition: var(--transition-fast);
+  transition: var(--transition);
 }
 
 .nav-link:hover {
-  color: var(--color-text-main);
-  border-bottom-color: var(--color-border-soft);
+  color: var(--c1);
+  border-bottom-color: var(--c3);
 }
 
-/* HERO SECTION */
-
+/* HERO */
 .section-hero {
+  position: relative;
   padding-top: 48px;
   padding-bottom: 96px;
 }
 
+.hero-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/img/radial-mask.png");
+  background-size: 120%;
+  background-position: center;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
 .hero-layout {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  grid-template-columns: 1.2fr 1fr;
   gap: 48px;
-  align-items: center;
 }
 
 .hero-title {
   font-size: 20px;
-  line-height: 1.5;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: var(--ls-wide);
   text-transform: uppercase;
-  margin: 0 0 12px 0;
+  margin-bottom: 12px;
 }
-
-.hero-subtitle {
-  margin: 0 0 24px 0;
-}
-
-.hero-body {
-  margin: 0;
-  max-width: 480px;
-  color: var(--color-text-muted);
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-.hero-media-frame {
-  border-radius: var(--radius-base);
-  border: 1px solid var(--color-border-soft);
-  padding: 12px;
-  background: linear-gradient(
-    145deg,
-    rgba(233, 236, 236, 0.04),
-    rgba(17, 23, 27, 0.9)
-  );
-}
-
-.media-inner {
-  border-radius: var(--radius-base);
-  overflow: hidden;
-  background: #000;
-}
-
-.hero-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  filter: grayscale(100%);
-}
-
-/* SECTION HEADERS */
-
-.section-header {
-  margin-bottom: 40px;
-}
-
-.section-header-center {
-  text-align: center;
-}
-
-.section-title {
-  margin: 0 0 8px 0;
-  font-size: 16px;
-  letter-spacing: var(--letter-spacing-wide);
-  text-transform: uppercase;
-}
-
-.section-subtitle {
-  margin: 0;
-  color: var(--color-text-muted);
-}
-
-/* 작은 부제: Alumni Sans SC 느낌 */
 
 .subtitle-small {
-  font-family: var(--font-subtitle);
+  font-family: var(--font-sub);
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-body {
+  color: var(--c3);
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+.hero-media-frame {
+  border-radius: var(--radius);
+  border: 1px solid var(--c3);
+  padding: 12px;
+  background: linear-gradient(145deg, rgba(233,236,236,0.04), rgba(17,23,27,0.9));
+}
+
+.media-inner {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  display: block;
+  filter: grayscale(100%) contrast(0.9);
+}
+
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/img/noise-overlay.png");
+  opacity: 0.15;
 }
 
 /* BENEFIT GRID */
-
 .section-benefits {
-  background: radial-gradient(circle at top, #11171b 0, #000 80%);
+  background: radial-gradient(circle at top, #11171b 0%, #000 80%);
 }
 
 .benefit-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 
 .card {
-  border-radius: var(--radius-base);
-  border: 1px solid rgba(140, 154, 158, 0.7);
+  border-radius: var(--radius);
+  border: 1px solid rgba(140,154,158,0.7);
   padding: 20px 18px;
-  background: linear-gradient(
-    160deg,
-    rgba(68, 84, 91, 0.9),
-    rgba(17, 23, 27, 0.95)
-  );
+  background: linear-gradient(160deg, rgba(68,84,91,0.9), rgba(17,23,27,0.95));
 }
 
 .card-title {
-  margin: 0 0 10px 0;
   font-size: 13px;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: var(--ls-wide);
   text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .card-body {
-  margin: 0;
   font-size: 13px;
+  color: var(--c3);
   line-height: 1.7;
-  color: var(--color-text-muted);
 }
 
-/* FORMULATION SECTION */
-
+/* FORMULATION */
 .section-formulation {
-  background: linear-gradient(180deg, #11171b 0, #000 100%);
+  background: linear-gradient(180deg, #11171b 0%, #000 100%);
 }
 
 .formulation-layout {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 }
 
-.formulation-column {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.chip-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .chip {
-  display: inline-flex;
-  align-items: center;
   padding: 10px 14px;
-  border-radius: var(--radius-base);
-  border: 1px solid rgba(140, 154, 158, 0.8);
-  background: rgba(17, 23, 27, 0.9);
+  border-radius: var(--radius);
+  border: 1px solid rgba(140,154,158,0.8);
+  background: rgba(17,23,27,0.9);
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-text-main);
 }
 
-/* CTA SECTION */
-
+/* CTA */
 .section-cta {
-  background: radial-gradient(circle at bottom, #000 0, #11171b 60%);
+  background: radial-gradient(circle at bottom, #000 0%, #11171b 60%);
 }
 
 .cta-body {
   max-width: 520px;
   margin: 0 auto 32px auto;
   text-align: center;
+  color: var(--c3);
   font-size: 14px;
   line-height: 1.8;
-  color: var(--color-text-muted);
 }
-
-.cta-actions {
-  display: flex;
-  justify-content: center;
-}
-
-/* BUTTONS */
 
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   padding: 12px 28px;
-  border-radius: var(--radius-base);
-  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius);
+  border: 1px solid var(--c3);
   font-size: 11px;
-  letter-spacing: var(--letter-spacing-wide);
+  letter-spacing: var(--ls-wide);
   text-transform: uppercase;
   text-decoration: none;
-  cursor: pointer;
-  transition: var(--transition-fast);
+  color: var(--c1);
+  background: #44545b;
+  transition: var(--transition);
 }
 
-.btn-primary {
-  background: #44545b;
-  color: var(--color-text-main);
-}
-
-.btn-primary:hover {
-  background: #44545b;
+.btn:hover {
   filter: brightness(1.08);
-  border-color: var(--color-border-strong);
+  border-color: var(--c2);
 }
 
 /* RESPONSIVE */
-
 @media (max-width: 960px) {
   .hero-layout {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
   }
-
   .benefit-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
-
   .formulation-layout {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 640px) {
-  .section {
-    padding: 64px 18px;
-  }
-
   .benefit-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .nav-right {
-    gap: 16px;
-  }
-
-  .hero-title {
-    font-size: 18px;
+    grid-template-columns: 1fr;
   }
 }
