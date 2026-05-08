@@ -4,14 +4,18 @@
   <meta charset="UTF-8" />
   <title>Hyejeong Cheon | Research & Project Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- 실제 배포 시 Alumni Sans SC, 각진 산세리프 폰트는 웹폰트로 교체 -->
+  <link rel="stylesheet" href="css/reset.css" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
   <div class="page-root">
+
     <!-- HERO SECTION -->
     <header class="section section-hero">
+      <div class="hero-bg-layer"></div>
       <div class="container">
+
         <nav class="nav">
           <div class="nav-left">
             <span class="nav-logo">HYEJEONG CHEON</span>
@@ -29,7 +33,7 @@
               GEODESY · GNSS · DATA MODELING · SCIENTIFIC SYSTEMS
             </h1>
             <p class="hero-subtitle subtitle-small">
-              PRECISION-DRIVEN RESEARCH AND ENGINEERING
+              PRECISION-DRIVEN ENGINEERING
             </p>
             <p class="hero-body">
               지구 관측, GNSS 신호 모델링, 데이터 과학, 물리 기반 시스템 분석을 중심으로
@@ -39,85 +43,79 @@
 
           <div class="hero-media-frame">
             <div class="media-inner">
-              <!-- 업로드된 지구 이미지를 흑백으로 처리한 버전 -->
               <img
                 src="assets/img/earth-interface-bw.png"
-                alt="Earth observation and telemetry interface"
+                alt="Earth interface"
                 class="hero-image"
               />
+              <div class="media-overlay"></div>
             </div>
           </div>
         </div>
+
       </div>
     </header>
 
-    <!-- BENEFIT GRID SECTION -->
+    <!-- BENEFIT GRID -->
     <section id="benefits" class="section section-benefits">
       <div class="container">
         <header class="section-header">
           <h2 class="section-title">RESEARCH FOCUS</h2>
-          <p class="section-subtitle subtitle-small">
-            STRUCTURED CAPABILITIES
-          </p>
+          <p class="section-subtitle subtitle-small">STRUCTURED CAPABILITIES</p>
         </header>
 
         <div class="benefit-grid">
           <article class="card">
             <h3 class="card-title">GNSS SIGNAL MODELING</h3>
             <p class="card-body">
-              위성 신호의 왜곡, 플라즈마 영향, 다중 경로를 정량화하는
-              고정밀 GNSS 모델링을 수행합니다.
+              위성 신호의 왜곡, 플라즈마 영향, 다중 경로를 정량화하는 모델링 전문성.
             </p>
           </article>
 
           <article class="card">
             <h3 class="card-title">DATA SCIENCE SYSTEMS</h3>
             <p class="card-body">
-              대규모 시계열 및 센서 데이터를 기반으로
-              통계적 구조와 패턴을 분석합니다.
+              대규모 시계열·센서 데이터 분석 및 통계적 구조 해석.
             </p>
           </article>
 
           <article class="card">
             <h3 class="card-title">PHYSICS-BASED FRAMEWORKS</h3>
             <p class="card-body">
-              GNSS, 플라즈마, 혼돈, 동역학을 통합하는
-              물리 기반 다중 스케일 모델을 설계합니다.
+              GNSS·플라즈마·혼돈·동역학을 통합하는 다중 스케일 모델링.
             </p>
           </article>
 
           <article class="card">
             <h3 class="card-title">INTERNATIONAL PROJECT LEADERSHIP</h3>
             <p class="card-body">
-              다국가·다분야 연구 프로젝트를 기획하고,
-              제안서와 협업 구조를 엔지니어링합니다.
+              다국가·다분야 팀을 조율하는 연구 기획 및 제안 전략.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- FORMULATION / INGREDIENTS SECTION -->
+    <!-- FORMULATION -->
     <section id="formulation" class="section section-formulation">
       <div class="container">
         <header class="section-header">
           <h2 class="section-title">RESEARCH FORMULATION</h2>
-          <p class="section-subtitle subtitle-small">
-            COMPONENTS OF THE SYSTEM
-          </p>
+          <p class="section-subtitle subtitle-small">COMPONENTS OF THE SYSTEM</p>
         </header>
 
         <div class="formulation-layout">
           <div class="formulation-column">
             <div class="chip-list">
               <div class="chip">GNSS OBSERVATION MODELS</div>
-              <div class="chip">IONOSPHERIC &amp; PLASMA INTERACTION</div>
+              <div class="chip">IONOSPHERIC & PLASMA INTERACTION</div>
               <div class="chip">STATISTICAL INFERENCE LAYERS</div>
             </div>
           </div>
+
           <div class="formulation-column">
             <div class="chip-list">
-              <div class="chip">ML-BASED SIGNAL CORRECTION</div>
+              <div class="chip">ML SIGNAL CORRECTION</div>
               <div class="chip">GEODETIC NETWORK INTEGRATION</div>
               <div class="chip">MULTI-SCALE TEMPORAL DYNAMICS</div>
             </div>
@@ -126,11 +124,11 @@
       </div>
     </section>
 
-    <!-- CTA SECTION -->
+    <!-- CTA -->
     <section id="cta" class="section section-cta">
       <div class="container">
         <header class="section-header section-header-center">
-          <h2 class="section-title">COLLABORATION &amp; RESEARCH INQUIRIES</h2>
+          <h2 class="section-title">COLLABORATION & RESEARCH INQUIRIES</h2>
           <p class="section-subtitle subtitle-small">
             CONTROLLED, DATA-DRIVEN ENGINEERING
           </p>
@@ -148,6 +146,9 @@
         </div>
       </div>
     </section>
+
   </div>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
