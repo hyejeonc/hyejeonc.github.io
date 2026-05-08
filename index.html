@@ -1,143 +1,543 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Hyejeong Cheon | CV and Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio</title>
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #f5f5f0;
+    --gray: #999990;
+    --dimgray: #555550;
+    --black: #080808;
+    --serif: Georgia, 'Times New Roman', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--serif);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 3.5rem;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.85) 0%, transparent 100%);
+  }
+
+  .nav-logo {
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    color: var(--white);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.8rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gray);
+    transition: color 0.25s ease;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--white);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── HERO / HOME ── */
+  #home {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  spline-viewer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-text {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hero-name {
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    line-height: 1.15;
+    text-shadow: 0 0 60px rgba(0,0,0,0.9);
+  }
+
+  .hero-subtitle {
+    margin-top: 1rem;
+    font-size: clamp(0.8rem, 1.4vw, 1rem);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-shadow: 0 0 40px rgba(0,0,0,0.8);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.4;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  .scroll-hint span {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--gray), transparent);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+    50% { opacity: 0.7; transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 7rem 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--dimgray);
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    margin-bottom: 2rem;
+    line-height: 1.3;
+  }
+
+  p, li {
+    font-size: 1rem;
+    color: var(--gray);
+    line-height: 1.85;
+    font-style: italic;
+  }
+
+  /* ── CV ── */
+  .cv-block {
+    margin-bottom: 3rem;
+  }
+
+  .cv-block h3 {
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--dimgray);
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+
+  .cv-entry {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.3rem 2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .cv-entry:last-child { border-bottom: none; }
+
+  .cv-role {
+    font-size: 0.95rem;
+    color: var(--white);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  .cv-org {
+    font-size: 0.85rem;
+    color: var(--gray);
+    font-style: italic;
+    grid-column: 1;
+  }
+
+  .cv-year {
+    font-size: 0.75rem;
+    color: var(--dimgray);
+    letter-spacing: 0.1em;
+    grid-row: 1 / 3;
+    grid-column: 2;
+    align-self: center;
+    white-space: nowrap;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .project-card {
+    background: var(--black);
+    padding: 2rem 1.8rem;
+    transition: background 0.25s ease;
+    cursor: default;
+  }
+
+  .project-card:hover {
+    background: #111110;
+  }
+
+  .project-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--dimgray);
+    margin-bottom: 0.8rem;
+    font-style: normal;
+  }
+
+  .project-title {
+    font-size: 1.05rem;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    line-height: 1.75;
+    color: var(--dimgray);
+  }
+
+  /* ── RESEARCH ── */
+  .research-item {
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 0 1.5rem;
+    align-items: start;
+  }
+
+  .research-item:last-child { border-bottom: none; }
+
+  .research-num {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--dimgray);
+    padding-top: 0.2rem;
+    font-style: normal;
+  }
+
+  .research-title {
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+  }
+
+  .research-meta {
+    font-size: 0.8rem;
+    color: var(--dimgray);
+    font-style: normal;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── OTHERS ── */
+  .others-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 4rem;
+  }
+
+  .others-block h3 {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--dimgray);
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+
+  .others-block ul {
+    list-style: none;
+  }
+
+  .others-block li {
+    font-size: 0.9rem;
+    font-style: normal;
+    color: var(--gray);
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    letter-spacing: 0.02em;
+  }
+
+  .others-block li:last-child { border-bottom: none; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  footer p {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dimgray);
+    font-style: normal;
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.4rem; }
+    .nav-links a { font-size: 0.7rem; letter-spacing: 0.14em; }
+    .others-row { grid-template-columns: 1fr; }
+    section { padding: 5rem 1.5rem; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="page-root">
 
-    <!-- HERO SECTION -->
-    <header class="section section-hero">
-      <div class="hero-bg-layer"></div>
-      <div class="container">
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#cv">CV</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#others">Others</a></li>
+  </ul>
+</nav>
 
-        <nav class="nav">
-          <div class="nav-left">
-            <span class="nav-logo">HYEJEONG CHEON</span>
-          </div>
-          <div class="nav-right">
-            <a href="#benefits" class="nav-link">FOCUS</a>
-            <a href="#formulation" class="nav-link">FORMULATION</a>
-            <a href="#cta" class="nav-link">CONTACT</a>
-          </div>
-        </nav>
+<!-- HOME -->
+<section id="home" style="max-width:100%; padding:0; border:none;">
+  <spline-viewer url="https://prod.spline.design/z2PzaeLYMweQm-vq/scene.splinecode"></spline-viewer>
+  <div class="hero-text">
+    <div class="hero-name">Hyejeong Cheon</div>
+    <div class="hero-subtitle">천혜정 </div> <!-- Researcher &nbsp;·&nbsp; Engineer &nbsp;·&nbsp; Creator</div> -->
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-        <div class="hero-layout">
-          <div class="hero-text">
-            <h1 class="hero-title">
-              GEODESY · GNSS · DATA MODELING · SCIENTIFIC SYSTEMS
-            </h1>
-            <p class="hero-subtitle subtitle-small">
-              PRECISION-DRIVEN ENGINEERING
-            </p>
-            <p class="hero-body">
-              지구 관측, GNSS 신호 모델링, 데이터 과학, 물리 기반 시스템 분석.
-            </p>
-          </div>
+<!-- CV -->
+<section id="cv">
+  <div class="section-label">Curriculum Vitae</div>
+  <h2>Experience &amp; Education</h2>
 
-          <div class="hero-media-frame">
-            <div class="media-inner">
-              <img
-                src="assets/img/earth-interface-bw.png"
-                alt="Earth interface"
-                class="hero-image"
-              />
-              <div class="media-overlay"></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </header>
-
-    <!-- BENEFIT GRID -->
-    <section id="benefits" class="section section-benefits">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-title">RESEARCH FOCUS</h2>
-          <p class="section-subtitle subtitle-small">STRUCTURED CAPABILITIES</p>
-        </header>
-
-        <div class="benefit-grid">
-          <article class="card">
-            <h3 class="card-title">GNSS SIGNAL MODELING</h3>
-            <p class="card-body">
-              위성 신호.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">DATA SCIENCE SYSTEMS</h3>
-            <p class="card-body">
-              대규모 시계열 데이터 분석 및 통계적 구조 해석.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">PHYSICS-BASED FRAMEWORKS</h3>
-            <p class="card-body">
-              GNSS·플라즈마·혼돈·동역학을 통합하는 다중 스케일 모델링. ?? 
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- FORMULATION -->
-    <section id="formulation" class="section section-formulation">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-title">RESEARCH FORMULATION</h2>
-          <p class="section-subtitle subtitle-small">COMPONENTS OF THE SYSTEM</p>
-        </header>
-
-        <div class="formulation-layout">
-          <div class="formulation-column">
-            <div class="chip-list">
-              <div class="chip">GNSS OBSERVATION MODELS</div>
-              <div class="chip">IONOSPHERIC & PLASMA INTERACTION</div>
-              <div class="chip">STATISTICAL INFERENCE LAYERS</div>
-            </div>
-          </div>
-
-          <div class="formulation-column">
-            <div class="chip-list">
-              <div class="chip">ML SIGNAL CORRECTION</div>
-              <div class="chip">GEODETIC NETWORK INTEGRATION</div>
-              <div class="chip">MULTI-SCALE TEMPORAL DYNAMICS</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section id="cta" class="section section-cta">
-      <div class="container">
-        <header class="section-header section-header-center">
-          <h2 class="section-title">      *** </h2>
-          <p class="section-subtitle subtitle-small">
-          
-          </p>
-        </header>
-
-  
-        <div class="cta-actions">
-          <a href="mailto:hyejeonc@gmail.com" class="btn btn-primary">
-            CONTACT HYEJEONG
-          </a>
-        </div>
-      </div>
-    </section>
-
+  <div class="cv-block">
+    <h3>Experience</h3>
+    <div class="cv-entry">
+      <span class="cv-role">Senior engineer (Overingeniør)</span>
+      <span class="cv-year">2025 – Present</span>
+      <span class="cv-org">Geodesy department @Kartverket (The Norwegian mapping authority) </span>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-role">Research engineer</span>
+      <span class="cv-year">2015 – 2017</span>
+      <span class="cv-org">SK Hynix Semiconductor</span>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-role">Student intern</span>
+      <span class="cv-year">2011 - 2014</span>
+      <span class="cv-org">Chung-ang University</span>
+    </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <div class="cv-block">
+    <h3>Education</h3>
+    <div class="cv-entry">
+      <span class="cv-role">Ph.D., Physics</span>
+      <span class="cv-year">2020 – 2024</span>
+      <span class="cv-org">Norwegian University of Science and Technology (NTNU), Trondheim, Norway</span>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-role">M.Sc., Physics</span>
+      <span class="cv-year">2017 – 2019</span>
+      <span class="cv-org">Norwegian University of Science and Technology (NTNU), Trondheim, Norway</span>
+    </div>
+    <div class="cv-entry">
+      <span class="cv-role">B.S., Integrative engineering, Nanomaterials</span>
+      <span class="cv-year">2011 – 2015</span>
+      <span class="cv-org">Chung-ang University</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Selected Work</div>
+  <h2>Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-tag">2024 · Research Tool</div>
+      <div class="project-title">Project Title One</div>
+      <p class="project-desc">A brief description of what this project does, the problem it solves, and the technologies or methods involved.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">2023 · Data Visualization</div>
+      <div class="project-title">Project Title Two</div>
+      <p class="project-desc">A brief description of what this project does, the problem it solves, and the technologies or methods involved.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">2023 · Open Source</div>
+      <div class="project-title">Project Title Three</div>
+      <p class="project-desc">A brief description of what this project does, the problem it solves, and the technologies or methods involved.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">2022 · Prototype</div>
+      <div class="project-title">Project Title Four</div>
+      <p class="project-desc">A brief description of what this project does, the problem it solves, and the technologies or methods involved.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section-label">Publications/Patents</div>
+  <h2>Research</h2>
+
+  <div class="research-item">
+    <span class="research-num">01</span>
+    <div>
+      <div class="research-title">"Paper Title: A Study of Something Important and Interesting"</div>
+      <div class="research-meta">Author Name, Co-Author · Journal Name · 2024</div>
+    </div>
+  </div>
+  <div class="research-item">
+    <span class="research-num">02</span>
+    <div>
+      <div class="research-title">"Another Paper Title: Exploring Novel Approaches to the Problem"</div>
+      <div class="research-meta">Author Name, Co-Author, Co-Author · Conference Name · 2023</div>
+    </div>
+  </div>
+  <div class="research-item">
+    <span class="research-num">03</span>
+    <div>
+      <div class="research-title">"Third Paper Title: An Investigation into Methodology"</div>
+      <div class="research-meta">Author Name · Workshop Name · 2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- OTHERS -->
+<section id="others">
+  <div class="section-label">Miscellaneous</div>
+  <h2>Others</h2>
+  <div class="others-row">
+    <div class="others-block">
+      <h3>Skills</h3>
+      <ul>
+        <li>Python · R · MATLAB</li>
+        <li>Machine Learning</li>
+        <li>Data Analysis</li>
+        <li>Scientific Writing</li>
+        <li>Visualization</li>
+      </ul>
+    </div>
+    <div class="others-block">
+      <h3>Awards &amp; Honours</h3>
+      <ul>
+        <li>Award Name · 2023</li>
+        <li>Fellowship Name · 2021</li>
+        <li>Scholarship Name · 2019</li>
+      </ul>
+    </div>
+    <div class="others-block">
+      <h3>Talks &amp; Presentations</h3>
+      <ul>
+        <li>Conference Talk · 2024</li>
+        <li>Invited Seminar · 2023</li>
+        <li>Poster Presentation · 2022</li>
+      </ul>
+    </div>
+    <div class="others-block">
+      <h3>Contact</h3>
+      <ul>
+        <li>email@domain.com</li>
+        <li>GitHub / username</li>
+        <li>LinkedIn / username</li>
+        <li>Google Scholar</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 &nbsp;·&nbsp; Your Name &nbsp;·&nbsp; All rights reserved</p>
+</footer>
+
 </body>
 </html>
