@@ -18,7 +18,22 @@
 <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* 모든 하이퍼링크를 흰색으로 표시 */
+  a {
+    color: white;
+    text-decoration: none; /* 밑줄 제거 (선택 사항) */
+  }
+  a:hover {
+    color: lightgray; /* 마우스 올렸을 때 색상 (선택 사항) */
+  }
 
+  /* 특정 텍스트를 빨간색으로 표시 */
+  .highlight-red {
+    color: red;
+    font-family: "Arial", sans-serif; /* 원하는 폰트 지정 */
+    font-weight: bold; /* 굵게 표시 (선택 사항) */
+  }
+ 
   :root {
     --white: #f5f5f0;
     --gray: #999990;
@@ -555,7 +570,7 @@
       <h3> Personal  </h3>
       <ul>
         <li> Art archive <a href="https://eastercactus.vercel.app/">https://eastercactus.vercel.app/ </a> </li> 
-        <li> 서사몰입형 낭만낭만낭만가득 방탈출 게임 <a href="https://eastercactus.vercel.app/room/00-room.html">https://eastercactus.vercel.app/room/00-room.html </a> </li> 
+        <li> <span class="highlight-red">서사몰입형 낭만낭만낭만가득 방탈출 게임 <a href="https://eastercactus.vercel.app/room/00-room.html">https://eastercactus.vercel.app/room/00-room.html </a> </span> </li> 
 
       </ul>
     </div>
