@@ -542,6 +542,14 @@
 </footer>
 
 <!-- Firebase 사용 스크립트 추가 -->
+
+ <script>
+  // 페이지 접속 시 Cloud Function 호출
+  fetch("https://logvisit-ughlwhuj2a-lz.a.run.app");
+</script>
+
+ 
+ <!-- 이전 파이어베이스 추가 코드        
  <script type="module">
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
@@ -565,6 +573,7 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 </script>
+ --> 
 
  
 </body>
